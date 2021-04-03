@@ -4,6 +4,14 @@
  * @Last Modified by: lxk0301
  * @Last Modified time: 2021-3-29 11:52:54
  */
+/**
+ * sendNotify 推送通知功能
+ * @param text 通知头
+ * @param desp 通知体
+ * @param params 某些推送通知方式点击弹窗可跳转, 例：{ url: 'https://abc.com' }
+ * @param author 作者仓库等信息  例：`本脚本免费使用 By：https://gitee.com/lxk0301/jd_docker`
+ * @returns {Promise<unknown>}
+ */
 const querystring = require("querystring");
 const $ = new Env();
 // =======================================微信server酱通知设置区域===========================================
@@ -134,10 +142,17 @@ if (process.env.PUSH_PLUS_USER) {
 }
 //==========================云端环境变量的判断与接收=========================
 
-
-async function sendNotify(text, desp, params = {}) {
+/**
+ * sendNotify 推送通知功能
+ * @param text 通知头
+ * @param desp 通知体
+ * @param params 某些推送通知方式点击弹窗可跳转, 例：{ url: 'https://abc.com' }
+ * @param author 作者仓库等信息  例：`本脚本免费使用 By：https://gitee.com/lxk0301/jd_docker`
+ * @returns {Promise<unknown>}
+ */
+async function sendNotify(text, desp, params = {}, author = '\n\n本脚本免费使用 By：https://gitee.com/lxk0301/jd_docker') {
   //提供6种通知
-  desp += `\n\n本脚本免费使用 By：https://gitee.com/lxk0301/jd_docker`;
+  desp += author;//增加作者信息，防止被贩卖等
   await Promise.all([
     serverNotify(text, desp),//微信server酱
     pushPlusNotify(text, desp)//pushplus(推送加)
