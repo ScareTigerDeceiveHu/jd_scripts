@@ -1,11 +1,6 @@
 /*
- * @Author: shylocks https://github.com/shylocks
- * @Date: 2021-01-13 22:01:41
- * @Last Modified by:   shylocks
- * @Last Modified time: 2021-01-13 22:11:41
- */
-/*
 京东秒秒币
+Last Modified time: 2021-05-22 8:55:00
 一天签到100币左右，100币可兑换1毛钱红包，推荐攒着配合农场一起用
 活动时间：长期活动
 更新地址：https://gitee.com/lxk0301/jd_scripts/raw/master/jd_ms.js
@@ -155,6 +150,7 @@ function getTaskList() {
                 if($.risk) break
                 if (vo['completionCnt'] < vo['assignmentTimesLimit']) {
                   if (vo['assignmentType'] === 1) {
+                    if(vo['ext'][vo['ext']['extraType']].length === 0) continue;
                     for (let i = vo['completionCnt']; i < vo['assignmentTimesLimit']; ++i) {
                       console.log(`去做${vo['assignmentName']}任务：${i + 1}/${vo['assignmentTimesLimit']}`)
                       let body = {
